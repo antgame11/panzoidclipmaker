@@ -14,15 +14,6 @@
 
 
 
-    <script data-cfasync="false" type="text/javascript">
-      var freestar = freestar || {};
-      freestar.queue = freestar.queue || [];
-      freestar.config = freestar.config || {};
-      freestar.config.enabled_slots = [];
-      freestar.initCallback = function () { (freestar.config.enabled_slots.length === 0) ? freestar.initCallbackCalled = false : freestar.newAdSlots(freestar.config.enabled_slots) }
-    </script>
-    <script src="https://a.pub.network/Panzoid-com/pubfig.min.js" data-cfasync="false" async></script>
-
     <script>
       var PZ = {};
       PZ.apiOrigin = "https://api.panzoid.com";
@@ -144,12 +135,6 @@
 
       <div id="previewpane">
         <canvas id="c_main"></canvas>
-        <div id="previewtop">
-          <div align="center" data-freestar-ad="__468x60 __970x90" id="Panzoid_tool_970x90_728x90_468x60_320x50_300x75">
-            <script data-cfasync="false" type="text/javascript">
-              freestar.config.enabled_slots.push({ placementName: "Panzoid_tool_970x90_728x90_468x60_320x50_300x75", slotId: "Panzoid_tool_970x90_728x90_468x60_320x50_300x75" });
-            </script>
-          </div>
         </div>
         <div id="previewbottom"></div>
       </div>

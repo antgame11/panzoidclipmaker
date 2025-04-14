@@ -104,29 +104,6 @@
 
       PZ.ui.ads.init = async function ()
       {
-        window.freestar = window.freestar || {};
-        freestar.hitTime = Date.now();
-        freestar.queue = freestar.queue || [];
-        freestar.config = freestar.config || {};
-        freestar.debug = window.location.search.indexOf('fsdebug') === -1 ? false : true;
-
-        this.adsReady = new Promise(function(resolve, reject)
-        {
-          freestar.initCallback = function ()
-          {
-            PZ.ui.ads.loaded = true;
-            resolve();
-          };
-        });
-
-        // Tag IDs set here, must match Tags served in the Body for proper setup
-        freestar.config.enabled_slots = [
-          "Panzoid_creationlist_970x90_728x90_468x60_320x50_300x75",
-          "Panzoid_discussionpost_728x90_468x60_320x50_300x75",
-          "Panzoid_tool_970x90_728x90_468x60_320x50_300x75",
-          "Panzoid_home_970x90_728x90_468x60_320x50",
-          "Panzoid_creationpost_336x280_320x50_300x250_300x100_250x250_200x200_180x150"
-        ];
 
         let me = await PZ.account.getCurrent();
         if ((me && me.hasSubscription))
@@ -196,9 +173,6 @@
 
         <div id="previewpane">
             <canvas id="c_main"></canvas>
-            <div id="previewtop">
-                <div style="text-align: center;" id="Panzoid_tool_970x90_728x90_468x60_320x50_300x75"></div>
-            </div>
             <div id="previewbottom"></div>
         </div>
     </div>
