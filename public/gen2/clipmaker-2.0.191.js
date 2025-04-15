@@ -13812,48 +13812,67 @@ CM.templates.selectResult = function(e, t) {
                 this.selectMain()
             }
         }, this).appendTo(r)
-    } else
-        0 === e ? (PZ.editor.generateTitle({
-            title: "Save your project"
-        }).appendTo(r),
-        PZ.editor.generateDescription({
-            content: "Your save file is ready! Click below to download."
-        }).appendTo(r),
-        PZ.editor.generateButton({
-            title: "Download project file",
-            clickfn: function() {
-                open("download.html", "_blank")
-            }
-        }, this).css("cursor", "pointer").appendTo(r),
-        PZ.editor.generateSpacer().appendTo(r),
-        PZ.editor.generateButton({
-            title: "Return to editing",
-            clickfn: function() {
-                this.finish(),
-                this.selectMain()
-            }
-        }, this).appendTo(r)) : (PZ.editor.generateTitle({
-            title: "Save/load your project"
-        }).appendTo(r),
-        void 0 === t && (t = "Unfortunately, something went wrong when processing your project. The problem has been reported in order to resolve this issue. Sorry about that."),
-        PZ.editor.generateDescription({
-            content: t
-        }).appendTo(r),
-        PZ.editor.generateSpacer().appendTo(r),
-        -1 === e ? PZ.editor.generateButton({
-            title: "Return to editing",
-            clickfn: function() {
-                this.finish(),
-                this.selectMain()
-            }
-        }, this).appendTo(r) : PZ.editor.generateButton({
-            title: "Go back",
-            clickfn: function() {
-                this.finish(),
-                this.selectSubmit()
-            }
-        }, this).appendTo(r))
-}
+    } else if (0 === e) {
+        window.open("/download.html")
+        this.selectMain()
+        setTimeout(() => {
+            this.finish()
+        }, 1000);
+
+    //     PZ.editor.generateTitle({
+    //         title: "Save your project"
+    //     }).appendTo(r);
+    
+    //     PZ.editor.generateDescription({
+    //         content: "Your save file is ready! Click below to download."
+    //     }).appendTo(r);
+    
+    //     PZ.editor.generateButton({
+    //         title: "Download project file",
+    //         clickfn: function() {
+    //             window.open("/download.html");
+    //         }
+    //     }, this).css("cursor", "pointer").appendTo(r);
+    
+    //     PZ.editor.generateSpacer().appendTo(r);
+    
+    //     PZ.editor.generateButton({
+    //         title: "Return to editing",
+    //         clickfn: function() {
+    //             this.finish();
+    //             this.selectMain();
+    //         }
+    //     }, this).appendTo(r);
+    // } else {
+    //     PZ.editor.generateTitle({
+    //         title: "Save/load your project"
+    //     }).appendTo(r);
+    
+    //     void 0 === t && (t = "Unfortunately, something went wrong when processing your project. The problem has been reported in order to resolve this issue. Sorry about that.");
+    
+    //     PZ.editor.generateDescription({
+    //         content: t
+    //     }).appendTo(r);
+    
+    //     PZ.editor.generateSpacer().appendTo(r);
+    
+    //     -1 === e
+    //         ? PZ.editor.generateButton({
+    //             title: "Return to editing",
+    //             clickfn: function() {
+    //                 this.finish();
+    //                 this.selectMain();
+    //             }
+    //         }, this).appendTo(r)
+    //         : PZ.editor.generateButton({
+    //             title: "Go back",
+    //             clickfn: function() {
+    //                 this.finish();
+    //                 this.selectSubmit();
+    //             }
+    //         }, this).appendTo(r);
+ }
+}    
 ,
 CM.templates.selectSubmit = function() {
     var e = this.insertlocation;
@@ -18464,7 +18483,7 @@ CM.download.select = function(e) {
     PZ.editor.generateButton({
         title: "Download your video",
         clickfn: function() {
-            open("download.html", "_blank")
+            window.open("/download.html")
         }
     }, this).css("cursor", "pointer").appendTo(this.$finish),
     PZ.editor.generateSpacer().appendTo(this.$finish),

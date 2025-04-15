@@ -1,1 +1,34 @@
-<script>location.href = "/gen2/clipmaker.html";</script>
+<!DOCTYPE html>
+<html style="margin: 0;">
+    <style>
+        html {
+            overflow: hidden;
+            background-color: gray;
+        }
+        body {
+            margin: 0;
+        }
+        header {
+            background-color: black;
+            height: 45px;
+            color: white;
+            font-size: 40px;
+            padding: 2px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            cursor: default;
+        }
+        .z {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: calc(100vh - 45px);
+        }
+    </style>
+    <body>
+        <header>Clip Maker <span class="z" id="cm2">CM2</span> <span class="z" id="cm3">CM3</span></header>
+        <iframe src="/gen2/clipmaker.html"></iframe>
+    </body>
+</html>

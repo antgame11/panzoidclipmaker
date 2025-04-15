@@ -1054,7 +1054,7 @@ PZ.ui.editor.prototype.save = async function(e) {
     let i = await t.tar();
     i && (PZ.downloadBlob = i,
     PZ.downloadFilename = "project.pz"),
-    window.open("download.html"),
+    window.open("/download.html"),
     this.project.ui.dirty = !1
 }
 ,
@@ -11034,7 +11034,7 @@ PZ.ui.export.device = class {
         e.appendChild(PZ.ui.controls.legacy.generateButton({
             title: "Download your video",
             clickfn: function() {
-                open("download.html", "_blank")
+                open("/download.html", "_blank")
             }
         }, this)),
         e.lastElementChild.style.cursor = "pointer",
@@ -11159,7 +11159,7 @@ PZ.ui.export.frame = class {
         e.appendChild(PZ.ui.controls.legacy.generateButton({
             title: "Download your image",
             clickfn: function() {
-                open("download.html", "_blank")
+                open("/download.html", "_blank")
             }
         }, this)),
         e.lastElementChild.style.cursor = "pointer",
