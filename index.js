@@ -1,4 +1,3 @@
-//Partially Generated with ChatGPT
 //My attempt at creating a web app for these versions of the panzoid cm
 const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const path = require('path');
@@ -13,12 +12,7 @@ serverApp.listen(PORT, "127.69.69.240", () => {
 });
 
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 800,
-    webPreferences: {
-    }
-  });
+  const win = new BrowserWindow({});
 
   const template = [
     {
@@ -27,7 +21,7 @@ function createWindow() {
         { 
             label: 'Save', 
             accelerator: 'CmdOrCtrl+S', 
-            click: () => win.webContents.executeJavaScript("CM.templates.saveButton(); CM.save()")
+            click: () => win.webContents.executeJavaScript("CM.save()")
         },
       ]
       
@@ -61,16 +55,18 @@ function createWindow() {
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 
-  win.loadURL(`http://127.69.69.240:${PORT}`);
+  win.loadURL(`http://127.69.69.240:${PORT}/gen2/clipmaker.html`);
   win.setTitle("Clip Maker")
 }
 
 app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
+  app.quit();
 });
 
 app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
 });

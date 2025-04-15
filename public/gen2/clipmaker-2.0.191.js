@@ -14308,6 +14308,10 @@ CM.templates.saveButton = function() {
     this.save()
 }
 ,
+CM.save = function() {
+    CM.templates.saveButton()
+}
+,
 CM.templates.submitButton = function() {
     this.submit.title.length < 6 ? this.selectResult(-2, "Your creation's title is too short.") : (CM.timeline.disable(!0),
     this.percentDone = 10,
