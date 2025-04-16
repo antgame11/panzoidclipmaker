@@ -14067,12 +14067,15 @@ CM.templates.selectRelated = function(e) {
     const l = () => {
         const e = document.createElement("div");
         e.style.cssText = `\n      display: flex;\n      width: 100%;\n      margin-top: 10px;\n      padding: 0 5px;\n      gap: 8px;\n      box-sizing: border-box;\n      opacity: 0.5;\n      pointer-events: none;\n      flex-direction: column;\n    `;
+        e.hidden = true;
         const t = document.createElement("div");
+        t.hidden = true;
         t.style.cssText = `\n      width: 168px;\n      height: 94px;\n      background-color: #444;\n      border-radius: 10px;\n      flex-shrink: 0;\n      animation: pulse 1.5s infinite;\n    `;
         const r = document.createElement("div");
+        r.hidden = true;
         return r.style.cssText = `\n      width: 168px;\n      height: 16px;\n      background-color: #555;\n      margin-top: 5px;\n      border-radius: 4px;\n      animation: pulse 1.5s infinite;\n    `,
-        e.appendChild(t),
-        e.appendChild(r),
+        // e.appendChild(t),
+        // e.appendChild(r),
         e
     }
       , c = document.createElement("style");
@@ -14125,6 +14128,7 @@ CM.templates.selectRelated = function(e) {
                     t.forEach( (e, t) => {
                         const a = document.createElement("div");
                         a.style.cssText = `\n                  display: flex;\n                  flex-direction: column;\n                  width: 100%;\n                  margin-top: 10px;\n                  padding: 0 5px;\n                  gap: 8px;\n                  box-sizing: border-box;\n                `;
+                        a.hidden = true;
                         const n = document.createElement("a");
                         n.href = `${window.parent && window.parent.location.pathname || window.location.pathname}?c=${e.creationId}`,
                         n.target = "_top",
@@ -18630,7 +18634,7 @@ CM.about = function(e) {
         title: "Clipmaker 2.0.191"
     }).appendTo(e),
     PZ.editor.generateDescription({
-        content: 'Copyright 2017 Panzoid <br><a target="_blank" href="/about/terms">Terms</a> | <a target="_blank" href="/about/privacy">Privacy</a>'
+        content: 'Copyright 2017 Panzoid <br>Updated by antgame11<br><a target="_blank" href="https://panzoid.com/about/terms">Terms</a> | <a target="_blank" href="https://panzoid.com/about/privacy">Privacy</a>'
     }).appendTo(e)
 }
 ,

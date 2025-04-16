@@ -29,6 +29,35 @@
     </style>
     <body>
         <header>Clip Maker <span class="z" id="cm2">CM2</span> <span class="z" id="cm3">CM3</span></header>
-        <iframe src="/gen2/clipmaker.html"></iframe>
+        <iframe src="/gen2/"></iframe>
+        <script>
+            var ctrl = false;
+            document.addEventListener("keydown", (key) => {
+                if (key.code == "ControlLeft") {
+                    ctrl = true;
+                }
+            })
+            document.addEventListener("keyup", (key) => {
+                if (key.code == "ControlLeft") {
+                    ctrl = false;
+                }
+            })
+            document.querySelector("#cm2").addEventListener("click", () => {
+                const url = "/gen2/";
+                if (ctrl == true) {
+                    location.href = url
+                } else {
+                    document.querySelector("iframe").src = url;
+                }
+            })
+            document.querySelector("#cm3").addEventListener("click", () => {
+                const url = "/gen3/";
+                if (ctrl == true) {
+                    location.href = url
+                } else {
+                    document.querySelector("iframe").src = url;
+                }
+            })
+        </script>
     </body>
 </html>
