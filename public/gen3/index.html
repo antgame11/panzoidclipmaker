@@ -34,21 +34,7 @@
         updatePromise: null
       };
 
-      PZ.account.getCurrent = async function ()
-      {
-        if (typeof this.currentUser === "undefined")
-        {
-          if (!this.updatePromise)
-          {
-            this.updatePromise = PZ.account.update();
-          }
-
-          await this.updatePromise;
-        }
-
-        return this.currentUser;
-      };
-
+    
       PZ.api = async function (url, op, body)
       {
         url = PZ.apiOrigin + url;
@@ -56,7 +42,6 @@
         if (op !== "get" && op !== "head")
         {
           var headers = new Headers();
-          var me = await PZ.account.getCurrent();
           headers.append("x-csrf-token", PZ.account.csrf);
 
           if (body instanceof FormData === false)
@@ -78,35 +63,6 @@
       };
 
       PZ.ui = PZ.ui || {};
-      PZ.ui.ads = {};
-
-      PZ.ui.ads.init = async function ()
-      {
-
-        let me = await PZ.account.getCurrent();
-        if ((me && me.hasSubscription))
-        {
-          return;
-        }
-
-        !function(a,b){var c=b.getElementsByTagName("script")[0],d=b.createElement("script"),e="https://a.pub.network/Panzoid-com";e+=freestar.debug?"/qa/pubfig.min.js":"/pubfig.min.js",d.async=!0,d.src=e,c.parentNode.insertBefore(d,c)}(window,document);
-      };
-
-      PZ.ui.ads.show = async function (unit, elId)
-      {
-        await PZ.ui.ads.adsReady;
-
-        if (!elId) elId = unit;
-
-        // freestar.deleteAdSlots();
-
-        freestar.newAdSlots(
-          [{
-            placementName: unit,
-            slotId: elId
-          }]
-        );
-      };
     </script>
 </head>
 
@@ -160,7 +116,6 @@
     <script src="./clipmaker-3.0.106.js"></script>
 
     <script>
-      PZ.ui.ads.init();
       initTool();
     </script>
 </body>

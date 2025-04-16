@@ -3,8 +3,7 @@ var CM = new PZ.ui.editor;
 CM.name = "Clipmaker";
 var BG = {};
 async function initTool() {
-    let e = await PZ.account.getCurrent();
-    CM.setUpEditor(e);
+    CM.setUpEditor();
     let t = await CM.getCreationFromUrl();
     CM.init(t),
     CM.enabled = !0

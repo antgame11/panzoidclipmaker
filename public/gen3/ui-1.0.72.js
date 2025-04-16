@@ -812,7 +812,6 @@ PZ.ui.ad.prototype.resize = function() {
     if (!this.initialized) {
         let e = "Panzoid_tool_970x90_728x90_468x60_320x50_300x75";
         this.el.id = e,
-        PZ.ui.ads.show(e),
         this.initialized = !0
     }
 }
@@ -6705,6 +6704,7 @@ PZ.ui.media.list.missing.prototype.createItem = function(e) {
 PZ.ui.media.list.community = function(e) {
     this.title = new PZ.ui.media.title(e),
     this.title.nameEl.innerText = "Community media",
+    this.hidden = true,
     e.el.appendChild(this.title.el),
     PZ.ui.media.list.call(this, e),
     this.searchQuery = "",
@@ -6755,20 +6755,20 @@ PZ.ui.media.list.community.prototype.loadCreationsList = async function(e) {
 }
 ,
 PZ.ui.media.list.community.prototype.redrawList = async function(e) {
-    if (e !== this.searchQuery)
-        return;
-    let t = "?pageSize=12&page=" + Math.round(25 * Math.random()).toString();
-    "" !== e && (t = "?pageSize=12&section=4&query=" + encodeURIComponent(e)),
-    this.el.innerHTML = "";
-    let i = await this.loadCreationsList(t);
-    if (i && i.length)
-        this.createItems(i);
-    else {
-        let e = document.createElement("div");
-        e.classList.add("empty", "noselect"),
-        e.innerText = i ? "no results" : "couldn't load media",
-        this.el.appendChild(e)
-    }
+    // if (e !== this.searchQuery)
+    //     return;
+    // let t = "?pageSize=12&page=" + Math.round(25 * Math.random()).toString();
+    // "" !== e && (t = "?pageSize=12&section=4&query=" + encodeURIComponent(e)),
+    // this.el.innerHTML = "";
+    // let i = await this.loadCreationsList(t);
+    // if (i && i.length)
+    //     this.createItems(i);
+    // else {
+    //     let e = document.createElement("div");
+    //     e.classList.add("empty", "noselect"),
+    //     e.innerText = i ? "no results" : "couldn't load media",
+    //     this.el.appendChild(e)
+    // }
 }
 ,
 PZ.ui.media.list.project = function(e) {
