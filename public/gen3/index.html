@@ -25,8 +25,8 @@
         return hash;
       };
 
-      PZ.apiOrigin = "https://api.panzoid.com";
-      PZ.blobOrigin = "https://blob.panzoid.com";
+      PZ.apiOrigin = "/";
+      PZ.blobOrigin = "/";
       PZ.account =
       {
         //currentUser: undefined,
@@ -47,28 +47,6 @@
         }
 
         return this.currentUser;
-      };
-
-      PZ.account.update = async function ()
-      {
-        try
-        {
-          var response = await PZ.api("/users/me", "get");
-          if (response.status !== 200)
-          {
-            PZ.account.currentUser = null;
-          }
-          else
-          {
-            PZ.account.csrf = response.headers.get("X-CSRF-Token");
-            var json = await response.json();
-            PZ.account.currentUser = json;
-          }
-        }
-        catch (e)
-        {
-          PZ.account.currentUser = null;
-        }
       };
 
       PZ.api = async function (url, op, body)

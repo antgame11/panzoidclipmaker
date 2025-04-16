@@ -14107,93 +14107,94 @@ CM.templates.selectRelated = function(e) {
             }
             var c = e ? `/creations?section=6&pageSize=12&page=${t}&query=${e}` : `/creations?pageSize=12&page=${t}`;
             PZ.api(c, "get").then(function(l) {
-                200 === l.status ? l.json().then(function(t) {
-                    for (let e = 0; e < 12; e++)
-                        r.lastChild && r.lastChild.matches('div[style*="opacity: 0.5"]') && r.removeChild(r.lastChild);
-                    0 === t.length && (i = !1),
-                    p.push(...t.map(e => e.creationId));
-                    const l = t => {
-                        var r = p.indexOf(t.creationId);
-                        navigator.sendBeacon(`${PZ.apiOrigin}/creations/click`, JSON.stringify({
-                            id: t.creationId,
-                            source: e ? "related" : "trending",
-                            relatedId: e || void 0,
-                            position: r,
-                            negativeSamples: Array.from({
-                                length: p.length
-                            }, (e, t) => t).filter(e => e !== r).sort( () => Math.random() - .5).slice(0, 5).map(e => [e, p[e]])
-                        }))
-                    }
-                    ;
-                    t.forEach( (e, t) => {
-                        const a = document.createElement("div");
-                        a.style.cssText = `\n                  display: flex;\n                  flex-direction: column;\n                  width: 100%;\n                  margin-top: 10px;\n                  padding: 0 5px;\n                  gap: 8px;\n                  box-sizing: border-box;\n                `;
-                        a.hidden = true;
-                        const n = document.createElement("a");
-                        n.href = `${window.parent && window.parent.location.pathname || window.location.pathname}?c=${e.creationId}`,
-                        n.target = "_top",
-                        n.style.cssText = `\n                  text-decoration: none;\n                  color: inherit;\n                  display: flex;\n                  gap: 6px;\n                `,
-                        n.onclick = ( () => l(e));
-                        const i = document.createElement("div");
-                        i.style.cssText = `\n                  display: flex;\n                  width: 168px;\n                  height: 94px;\n                  background-color: #222;\n                  border-radius: 10px;\n                  overflow: hidden;\n                  flex-shrink: 0;\n                `;
-                        const s = document.createElement("img");
-                        s.width = 330,
-                        s.height = 186,
-                        s.style.cssText = `\n                  width: 168px;\n                  height: 94px;\n                  margin: 0;\n                  object-fit: cover;\n                `,
-                        s.loading = "lazy",
-                        s.title = e.title,
-                        s.dataset.t = e.creationId,
-                        s.src = `${PZ.blobOrigin}/creation-thumbnails/${e.creationId}.jpg`,
-                        i.appendChild(s);
-                        const o = document.createElement("div");
-                        o.style.cssText = `\n                  display: flex;\n                  flex-direction: column;\n                  width: 100%;\n                  font-family: 'Open Sans', sans-serif;\n                  overflow: hidden;\n                `;
-                        const c = document.createElement("div");
-                        c.className = "creation-title",
-                        c.textContent = e.title.length > 50 ? e.title.substring(0, 47) + "..." : e.title,
-                        c.title = e.title;
-                        const p = document.createElement("div");
-                        p.className = "creation-user",
-                        p.textContent = e.user.display || e.user.name;
-                        const u = document.createElement("div");
-                        u.className = "creation-stats";
-                        const f = new Date(e.createdAt)
-                          , m = h.format(e.views)
-                          , g = d(f);
-                        u.textContent = `${m} views • ${g}`,
-                        n.appendChild(i),
-                        o.appendChild(c),
-                        o.appendChild(p),
-                        o.appendChild(u),
-                        n.appendChild(o),
-                        a.appendChild(n);
-                        const v = new Date;
-                        if (v.setDate(v.getDate() - 14),
-                        new Date(e.createdAt) > v) {
-                            const e = document.createElement("div");
-                            e.className = "new-badge",
-                            e.textContent = "New",
-                            o.appendChild(e)
-                        }
-                        r.appendChild(a)
-                    }
-                    ),
-                    i && (o && r.removeChild(o),
-                    (o = document.createElement("div")).id = "sentinel",
-                    r.appendChild(o),
-                    s.observe(o)),
-                    a += 1,
-                    n = !1
-                }).catch( () => {
-                    console.error("Failed to parse JSON response."),
-                    n = !1
-                }
-                ) : (console.error(`Failed to load page ${t}. Status: ${l.status}`),
-                n = !1)
-            }).catch( () => {
-                console.error(`Network error while loading page ${t}.`),
-                n = !1
+            //     200 === l.status ? l.json().then(function(t) {
+            //         for (let e = 0; e < 12; e++)
+            //             r.lastChild && r.lastChild.matches('div[style*="opacity: 0.5"]') && r.removeChild(r.lastChild);
+            //         0 === t.length && (i = !1),
+            //         p.push(...t.map(e => e.creationId));
+            //         const l = t => {
+            //             var r = p.indexOf(t.creationId);
+            //             // navigator.sendBeacon(`${PZ.apiOrigin}/creations/click`, JSON.stringify({
+            //             //     id: t.creationId,
+            //             //     source: e ? "related" : "trending",
+            //             //     relatedId: e || void 0,
+            //             //     position: r,
+            //             //     negativeSamples: Array.from({
+            //             //         length: p.length
+            //             //     }, (e, t) => t).filter(e => e !== r).sort( () => Math.random() - .5).slice(0, 5).map(e => [e, p[e]])
+            //             // }))
+            //         }
+            //         ;
+            //         t.forEach( (e, t) => {
+            //             const a = document.createElement("div");
+            //             a.style.cssText = `\n                  display: flex;\n                  flex-direction: column;\n                  width: 100%;\n                  margin-top: 10px;\n                  padding: 0 5px;\n                  gap: 8px;\n                  box-sizing: border-box;\n                `;
+            //             a.hidden = true;
+            //             const n = document.createElement("a");
+            //             n.href = `${window.parent && window.parent.location.pathname || window.location.pathname}?c=${e.creationId}`,
+            //             n.target = "_top",
+            //             n.style.cssText = `\n                  text-decoration: none;\n                  color: inherit;\n                  display: flex;\n                  gap: 6px;\n                `,
+            //             n.onclick = ( () => l(e));
+            //             const i = document.createElement("div");
+            //             i.style.cssText = `\n                  display: flex;\n                  width: 168px;\n                  height: 94px;\n                  background-color: #222;\n                  border-radius: 10px;\n                  overflow: hidden;\n                  flex-shrink: 0;\n                `;
+            //             const s = document.createElement("img");
+            //             s.width = 330,
+            //             s.height = 186,
+            //             s.style.cssText = `\n                  width: 168px;\n                  height: 94px;\n                  margin: 0;\n                  object-fit: cover;\n                `,
+            //             s.loading = "lazy",
+            //             s.title = e.title,
+            //             s.dataset.t = e.creationId,
+            //             s.src = `${PZ.blobOrigin}/creation-thumbnails/${e.creationId}.jpg`,
+            //             i.appendChild(s);
+            //             const o = document.createElement("div");
+            //             o.style.cssText = `\n                  display: flex;\n                  flex-direction: column;\n                  width: 100%;\n                  font-family: 'Open Sans', sans-serif;\n                  overflow: hidden;\n                `;
+            //             const c = document.createElement("div");
+            //             c.className = "creation-title",
+            //             c.textContent = e.title.length > 50 ? e.title.substring(0, 47) + "..." : e.title,
+            //             c.title = e.title;
+            //             const p = document.createElement("div");
+            //             p.className = "creation-user",
+            //             p.textContent = e.user.display || e.user.name;
+            //             const u = document.createElement("div");
+            //             u.className = "creation-stats";
+            //             const f = new Date(e.createdAt)
+            //               , m = h.format(e.views)
+            //               , g = d(f);
+            //             u.textContent = `${m} views • ${g}`,
+            //             n.appendChild(i),
+            //             o.appendChild(c),
+            //             o.appendChild(p),
+            //             o.appendChild(u),
+            //             n.appendChild(o),
+            //             a.appendChild(n);
+            //             const v = new Date;
+            //             if (v.setDate(v.getDate() - 14),
+            //             new Date(e.createdAt) > v) {
+            //                 const e = document.createElement("div");
+            //                 e.className = "new-badge",
+            //                 e.textContent = "New",
+            //                 o.appendChild(e)
+            //             }
+            //             r.appendChild(a)
+            //         }
+            //         ),
+            //         i && (o && r.removeChild(o),
+            //         (o = document.createElement("div")).id = "sentinel",
+            //         r.appendChild(o),
+            //         s.observe(o)),
+            //         a += 1,
+            //         n = !1
+            //     }).catch( () => {
+            //         console.error("Failed to parse JSON response."),
+            //         n = !1
+            //     }
+            //     ) : (console.error(`Failed to load page ${t}. Status: ${l.status}`),
+            //     n = !1)
+            // }).catch( () => {
+            //     console.error(`Network error while loading page ${t}.`),
+            //     n = !1
             }
-            )
+             )
+
         }
     }
     ;

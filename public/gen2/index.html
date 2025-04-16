@@ -17,52 +17,14 @@
 
     <script>
       var PZ = {};
-      PZ.apiOrigin = "https://api.panzoid.com";
-      PZ.blobOrigin = "https://blob.panzoid.com";
+      PZ.apiOrigin = "/";
+      PZ.blobOrigin = "/";
       PZ.account =
       {
         //currentUser: undefined,
         //csrf: undefined,
         updatePromise: null
       };
-
-      PZ.account.getCurrent = async function ()
-      {
-        if (typeof this.currentUser === "undefined")
-        {
-          if (!this.updatePromise)
-          {
-            this.updatePromise = PZ.account.update();
-          }
-
-          await this.updatePromise;
-        }
-
-        return this.currentUser;
-      };
-
-      PZ.account.update = async function ()
-      {
-        try
-        {
-          var response = await PZ.api("/users/me", "get");
-          if (response.status !== 200)
-          {
-            PZ.account.currentUser = null;
-          }
-          else
-          {
-            PZ.account.csrf = response.headers.get("X-CSRF-Token");
-            var json = await response.json();
-            PZ.account.currentUser = json;
-          }
-        }
-        catch (e)
-        {
-          PZ.account.currentUser = null;
-        }
-      };
-
       PZ.api = async function (url, op, body)
       {
         url = PZ.apiOrigin + url;
@@ -88,10 +50,8 @@
           credentials: 'include',
           body: body
         };
-        return fetch(url, params);
+        // return fetch(url, params);
       };
-
-      PZ.account.getCurrent();
     </script>
 </head>
 
