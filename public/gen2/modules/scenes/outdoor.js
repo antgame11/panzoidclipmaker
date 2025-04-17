@@ -279,25 +279,32 @@ this.select = function(t) {
 }
 ,
 this.updateLand = function() {
+    console.log(this.landmode)
     switch (this.landmode) {
     case 0:
+        CM.scene.remove(this.land)
         this.land && (CM.scene.remove(this.land),
         this.land = null);
         break;
-    case 1:
-        this.landgeometry = new THREE.PlaneGeometry(400,400),
+    case 1: {
+        console.log("outdoor 1")
+        CM.scene.remove(this.land)
+        this.landgeometry = new THREE.PlaneGeometry(400,400)
         this.landmaterial = new THREE.MeshPhongMaterial({
             ambient: 197379,
             specular: 0,
             color: 16777215,
             map: THREE.ImageUtils.loadTexture("assets/textures/outdoor/herbe_3.png")
-        }),
-        this.landmaterial.map.wrapS = this.landmaterial.map.wrapT = THREE.RepeatWrapping,
-        this.landmaterial.map.repeat.set(5, 5),
-        this.land = new THREE.Mesh(this.landgeometry,this.landmaterial),
-        this.land.rotation.x = -Math.PI / 2,
+        })
+        this.landmaterial.map.wrapS = this.landmaterial.map.wrapT = THREE.RepeatWrapping
+        this.landmaterial.map.repeat.set(5, 5)
+        this.land = new THREE.Mesh(this.landgeometry,this.landmaterial)
+        this.land.rotation.x = -Math.PI / 2
         CM.scene.add(this.land)
+        break;
+    }
         case 2: {
+            console.log("outdoor 2")
             CM.scene.remove(this.land)
             const width = 1000;
             const height = 1000;

@@ -19,8 +19,7 @@ function createWindow() {
       label: 'File',
       submenu: [
         { 
-            label: 'Save', 
-            accelerator: 'CmdOrCtrl+S', 
+            label: 'Save',
             click: () => win.webContents.executeJavaScript("CM.save()")
         },
       ]

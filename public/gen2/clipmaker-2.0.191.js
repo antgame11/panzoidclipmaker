@@ -13813,7 +13813,7 @@ CM.templates.selectResult = function(e, t) {
             }
         }, this).appendTo(r)
     } else if (0 === e) {
-        window.open("/download.html")
+        hiddenframe("/download.html")
         this.selectMain()
         setTimeout(() => {
             this.finish()
@@ -14221,7 +14221,7 @@ CM.templates.control = function(e) {
             if (void 0 === e)
                 return void t.selectResult(-1);
             PZ.downloadBlob = e,
-            PZ.downloadFilename = "clipmaker_project.pz",
+            PZ.downloadFilename = Date.now() + "_clipmaker.pz",
             t.selectResult(0)
         } else if (2 === r) {
             if (t.percentDone = 40,
@@ -14306,8 +14306,8 @@ CM.templates.loadButton = function() {
 }
 ,
 CM.templates.saveButton = function() {
-    this.$hidemsg.text("saving..."),
-    this.$hidectrls.show(),
+    // this.$hidemsg.text("saving..."),
+    // this.$hidectrls.show(),
     this.ctrlCancel = !1,
     this.ctrlState = 1,
     this.save()
@@ -18492,7 +18492,7 @@ CM.download.select = function(e) {
     PZ.editor.generateButton({
         title: "Download your video",
         clickfn: function() {
-            window.open("/download.html")
+            hiddenframe("/download.html")
         }
     }, this).css("cursor", "pointer").appendTo(this.$finish),
     PZ.editor.generateSpacer().appendTo(this.$finish),
@@ -18637,6 +18637,57 @@ CM.about = function(e) {
     PZ.editor.generateDescription({
         content: 'Copyright 2017 Panzoid <br>Updated by antgame11<br><a target="_blank" href="https://panzoid.com/about/terms">Terms</a> | <a target="_blank" href="https://panzoid.com/about/privacy">Privacy</a>'
     }).appendTo(e)
+    PZ.editor.generateDescription({
+        content: 'Auto Save (You must refresh for these settings to work)'
+    }).appendTo(e)
+    PZ.editor.generateInput({
+        title: "Auto Save Time (Sec)",
+        get: function() {
+            var autosave = localStorage.getItem("autosavetime")
+            if (autosave == undefined) {
+                autosave = 120
+            }
+            return parseInt(autosave)
+        },
+        set: function(e) {
+            localStorage.setItem("autosavetime",parseInt(e))
+        },
+        vmax: 10000000000,
+        vmin: 0,
+        vstep: 1,
+        dragstep: .01
+    },this).appendTo(e)
+    PZ.editor.generateDropdown({    
+        title: "Autosave",
+        items: "on;off",
+        get: function() {
+            var autosave = localStorage.getItem("autosave")
+            console.log(autosave)
+            if (autosave == undefined) {
+                autosave = false
+            }
+            return autosave
+        },
+        set: function(t) {
+            console.log(t)
+            if (t == 0) {
+                localStorage.setItem("autosave", 0)
+            } else if (t == 1) {
+                localStorage.setItem("autosave", 1)
+            }
+        }
+    }, e).appendTo(e)
+    PZ.editor.generateButton({
+        title: "Load last save",
+        clickfn: async function() {
+            // await browserFileStorage.init('autosave')
+            // browserFileStorage.load('autosave.pz').then((file) => {
+            //     CM.templates.load(file)
+            // }).catch((error) => {
+            //     console.error(error)
+            // })
+        }
+    }, this).appendTo(e)
 }
 ,
 CM.timeline = {

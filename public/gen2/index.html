@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/noisejs@2.1.0/index.min.js"></script>
-
     <link rel="stylesheet" href="./pz.all-8.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro">
 
@@ -52,6 +51,27 @@
         };
         // return fetch(url, params);
       };
+      document.addEventListener('keydown', function (key) {
+      if (key.ctrlKey && key.key.toLowerCase() === 's') {
+        key.preventDefault();
+        CM.save()
+      }
+      });
+      if (localStorage.getItem("autosave") == 0) {
+        setInterval(() => {
+          CM.save()
+        }, localStorage.getItem("autosavetime") * 1000);
+      }
+      function hiddenframe(url, delay = 1500) {
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = url;
+        document.body.appendChild(iframe);
+
+      setTimeout(() => {
+        iframe.remove();
+      }, delay);
+  }
     </script>
 </head>
 
