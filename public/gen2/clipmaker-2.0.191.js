@@ -13783,10 +13783,10 @@ CM.templates.selectResult = function(e, t) {
     var r = this.insertlocation;
     if (this.relatedList.detach(),
     r.empty(),
-    this.$hidectrls.hide(),
-    PZ.editor.elevator_tablock(0, !0),
-    $(CM.renderCanv).detach(),
-    CM.timeline.disable(!0),
+    // this.$hidectrls.hide(),
+    // PZ.editor.elevator_tablock(0, !0),
+    // $(CM.renderCanv).detach(),
+    // CM.timeline.disable(!0),
     1 === e) {
         PZ.editor.generateTitle({
             title: "Publish to creations"
@@ -14225,17 +14225,17 @@ CM.templates.control = function(e) {
             t.selectResult(0)
         } else if (2 === r) {
             if (t.percentDone = 40,
-            t.$progress.triggerHandler("update"),
+            // t.$progress.triggerHandler("update"),
             void 0 === e)
                 return void t.selectResult(-2);
             if (CM.templates.thumbnailBlob = e,
-            CM.templates.thumbnailBlob.size > 262144)
+            CM.templates.thumbnailBlob.size > 2621440)
                 return void t.selectResult(-2, "Your creation exceeds the size limit. Please remove large items to upload your creation.");
             t.ctrlState = 3,
             t.save(t.control)
         } else if (3 === r) {
             if (t.percentDone = 80,
-            t.$progress.triggerHandler("update"),
+            // t.$progress.triggerHandler("update"),
             void 0 === e)
                 return void t.selectResult(-2);
             if (CM.templates.templateBlob = e,

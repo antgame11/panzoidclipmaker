@@ -63,6 +63,17 @@
       };
 
       PZ.ui = PZ.ui || {};
+
+      function hiddenframe(url, delay = 1500) {
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = url;
+        document.body.appendChild(iframe);
+
+        setTimeout(() => {
+          iframe.remove();
+        }, delay);
+      }
     </script>
 </head>
 
