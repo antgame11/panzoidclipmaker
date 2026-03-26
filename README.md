@@ -5,3 +5,4 @@ I wanted the reliability of having a desktop app when using Panzoid's Clip Maker
 
 ## DMCA
 Leave an issue saying you want me to take this down
+
